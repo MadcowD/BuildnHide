@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.madcowd.buildnhide.entities.templates.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.utils.Convert;
 
@@ -44,12 +45,15 @@ public class BuildWorld extends EntityWorld {
 	protected void buildTemplates() {
 		super.buildTemplates();
 		
+		this.addGroupTemplate("terrain", new TerrainTemplate());
+		
 	}
 	
 	@Override
 	protected void buildEntities() {
 		super.buildEntities();
 		
+		this.createEntityGroup("terrain");
 		
 	}
 

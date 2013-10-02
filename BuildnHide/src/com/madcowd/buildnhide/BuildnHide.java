@@ -2,7 +2,6 @@ package com.madcowd.buildnhide;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.graphics.Texture;
 import com.madcowd.buildnhide.screens.GameplayScreen;
 import com.punchline.javalib.Game;
 import com.punchline.javalib.utils.Convert;
