@@ -1,4 +1,4 @@
-package com.punchline.microspace;
+package com.madcowd.buildnhide;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -10,7 +10,7 @@ public class Main {
 		cfg.useGL20 = false;
 		cfg.resizable = false;
 		
-		LwjglApplication a = new LwjglApplication(new MicroSpace(), cfg); 
+		LwjglApplication a = new LwjglApplication(new BuildnHide(), cfg); 
 		LogManager.init(a);
 	}
 }

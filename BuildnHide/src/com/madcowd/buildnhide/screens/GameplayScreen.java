@@ -1,13 +1,11 @@
-package com.punchline.microspace.screens;
+package com.madcowd.buildnhide.screens;
 
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.madcowd.buildnhide.entities.BuildWorld;
 import com.punchline.javalib.Game;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.states.InputScreen;
 import com.punchline.javalib.utils.Display;
-import com.punchline.microspace.MicroGameOverInfo;
-import com.punchline.microspace.entities.SpaceWorld;
 
 /**
  * The screen where actual gameplay takes place.
@@ -28,33 +26,20 @@ public class GameplayScreen extends InputScreen {
 		
 		camera = new OrthographicCamera(Display.getPreferredWidth(), Display.getPreferredHeight());
 		
-		world = new SpaceWorld(game.getInput(), camera);
+		world = new BuildWorld(game.getInput(), camera);
 	}
 
-	private void onPaused() {
-		game.getScreenManager().addScreen(new PauseMenuScreen(game));
-	}
-	
+
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Keys.ESCAPE || keycode == Keys.BACK) {
-			onPaused();
-			return true;
-		}
-		
+
 		return false;
 	}
 
 	@Override
 	public void render(float delta) {
 		world.process();
-		
-		if (world.isGameOver()) {
-			MicroGameOverInfo info = (MicroGameOverInfo) world.getGameOverInfo();
-			
-			exit();
-			game.getScreenManager().addScreen(new GameOverScreen(game, info));
-		}
+
 	}
 
 	@Override
@@ -73,16 +58,18 @@ public class GameplayScreen extends InputScreen {
 	}
 
 	@Override
-	public void pause() { 
-		onPaused();
-	}
-
-	@Override
 	public void resume() { }
 
 	@Override
 	public void dispose() {
 		world.dispose();
+	}
+
+
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
