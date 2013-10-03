@@ -29,8 +29,10 @@ public class BuildnHide extends Game {
 		float soundVol = pref.getBoolean("Sound", true) ? 1f : 0f;
 		float musicVol = pref.getBoolean("Music", true) ? 1f : 0f;
 		
-		SoundManager.setSoundVolume(soundVol);
-		SoundManager.setMusicVolume(musicVol);
+		SoundManager.setSoundVolume(1f);
+		SoundManager.setMusicVolume(1f);
+		
+		SoundManager.addSong("shemelts", Gdx.files.internal("data/she-melts.mp3"));
 	}
 	
 }

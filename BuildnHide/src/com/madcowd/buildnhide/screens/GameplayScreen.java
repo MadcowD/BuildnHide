@@ -6,6 +6,7 @@ import com.punchline.javalib.Game;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.states.InputScreen;
 import com.punchline.javalib.utils.Display;
+import com.punchline.javalib.utils.SoundManager;
 
 /**
  * The screen where actual gameplay takes place.
