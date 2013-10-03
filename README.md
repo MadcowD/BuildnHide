@@ -1,4 +1,3 @@
-MicroSpace
+Build'n'Hide
 ==========
-
-7dRTS game.
+I suppose this is my October jam game!
