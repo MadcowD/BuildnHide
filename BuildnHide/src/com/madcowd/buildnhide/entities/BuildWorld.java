@@ -28,14 +28,14 @@ public class BuildWorld extends EntityWorld {
 		
 		
 		if(Gdx.input.isKeyPressed(Keys.LEFT))
-			camera.position.add(-1, 0,0);
+			camera.position.add(-5, 0,0);
 		if(Gdx.input.isKeyPressed(Keys.RIGHT))
-			camera.position.add(1, 0,0);
+			camera.position.add(5, 0,0);
 		
 		if(Gdx.input.isKeyPressed(Keys.UP))
-			camera.position.add(0, 1,0);
+			camera.position.add(0, 5,0);
 		if(Gdx.input.isKeyPressed(Keys.DOWN))
-			camera.position.add(0, -1,0);
+			camera.position.add(0, -5,0);
 		
 		if(Gdx.input.isKeyPressed(Keys.X))
 			((OrthographicCamera)camera).zoom += 0.02f;
