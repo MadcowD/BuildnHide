@@ -56,7 +56,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		mountains.addComponent(new Particle(mountains, new Vector2(0,0), 0f));
 		
 		Sprite mountainsprite = new Sprite(background,new Rectangle(0, 128, 1024, 127));
-		mountainsprite.setLayer(0);
+		mountainsprite.setLayer(99);
 		mountains.addComponent(mountainsprite);
 		
 		mountains.addComponent(new Parallax(world.getCamera(), 1/64f));
@@ -73,7 +73,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		hills.addComponent(new Particle(hills, new Vector2(-15,0), 0f));
 		
 		Sprite hillsprite = new Sprite(background,new Rectangle(0, 0, 1024, 127));
-		hillsprite.setLayer(1);
+		hillsprite.setLayer(100);
 		hills.addComponent(hillsprite);
 		
 		hills.addComponent(new Parallax(world.getCamera(), 1/32f));
