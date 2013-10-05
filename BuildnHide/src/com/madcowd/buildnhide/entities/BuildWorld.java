@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.madcowd.buildnhide.entities.templates.TerrainTemplate;
+import com.madcowd.buildnhide.entities.templates.*;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SoundManager;
@@ -67,6 +67,12 @@ public class BuildWorld extends EntityWorld {
 		super.buildTemplates();
 		
 		this.addGroupTemplate("terrain", new TerrainTemplate());
+		//Scenery
+		addTemplate("BigPlanet", new BigPlanetTemplate());
+		addTemplate("SmallPlanet", new SmallPlanetTemplate());
+		addTemplate("BigStar", new BigStarTemplate());
+		addTemplate("SmallStar", new SmallStarTemplate());
+		addGroupTemplate("StarField", new StarFieldTemplate());
 		
 	}
 	
@@ -75,6 +81,7 @@ public class BuildWorld extends EntityWorld {
 		super.buildEntities();
 		
 		this.createEntityGroup("terrain");
+		this.createEntityGroup("StarField");
 		
 	}
 
