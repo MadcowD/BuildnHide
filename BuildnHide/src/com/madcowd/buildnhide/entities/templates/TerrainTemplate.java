@@ -49,7 +49,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		Entity ground = new Entity();
 		ground.init("G", "asdasd", "asd");
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(((Integer)args[0]).intValue()*Convert.pixelsToMeters(128), Convert.pixelsToMeters(128)/2f);
+		ps.setAsBox(((Integer)args[0]).intValue()/2*Convert.pixelsToMeters(128), Convert.pixelsToMeters(128)/2f);
 		Body groundBody = (Body)ground.addComponent(new Body(world, ground, BodyType.StaticBody, ps, new Vector2(0,-35)));
 		
 		
@@ -60,7 +60,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 			
 			Sprite s = new Sprite(tiles,new Rectangle(0, 0, 128, 127));
 			s.setPosition(
-					new Vector2((i-((Integer)args[0]).intValue()/2f)*Convert.pixelsToMeters(128)*8f,
+					new Vector2((i+1-((Integer)args[0]).intValue()/2f)*Convert.pixelsToMeters(128)*8f,
 							groundBody.getPosition().y+(Convert.pixelsToMeters(128)*6.125f)));
 			groundSprites.add(s);
 		}
