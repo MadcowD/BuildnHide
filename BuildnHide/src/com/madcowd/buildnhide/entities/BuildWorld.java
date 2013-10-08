@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.madcowd.buildnhide.entities.templates.*;
@@ -16,11 +17,12 @@ import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SoundManager;
+import com.punchline.javalib.utils.SpriteSheet;
 
 public class BuildWorld extends EntityWorld {
 	
 	public BuildWorld(InputMultiplexer input, Camera camera) {
-		super(input, camera, new Vector2(0, 0));
+		super(input, camera, new Vector2(0, -9.81f));
 		
 		SoundManager.playSong("shemelts", 1f, true);
 		
@@ -80,6 +82,9 @@ public class BuildWorld extends EntityWorld {
 		addTemplate("SmallStar", new SmallStarTemplate());
 		addGroupTemplate("StarField", new StarFieldTemplate());
 		
+		//Entitites
+		addTemplate("player", new PlayerTemplate());
+		
 	}
 	
 	@Override
@@ -88,12 +93,20 @@ public class BuildWorld extends EntityWorld {
 		
 		this.createEntityGroup("terrain", 256);
 		this.createEntityGroup("StarField");
+		this.createEntity("player");
 		
 	}
 
 	@Override
 	protected void buildSpriteSheet() {
+		this.spriteSheet = new SpriteSheet(new Texture(Gdx.files.internal("data/Textures/SPRITESHEET.PNG"))); 
 		
+		//SPRITESHEET
+		this.spriteSheet.addRegion("playerStraight", 28, 1, 8, 8);
+		this.spriteSheet.addRegion("playerRight", 10, 1, 8, 8);
+		this.spriteSheet.addRegion("playerRightRun", 19, 1, 8, 8);
+		this.spriteSheet.addRegion("playerLeft", 73, 1, 8, 8);
+		this.spriteSheet.addRegion("playerLeftRun", 66, 1, 8, 8);
 	}
 
 	
