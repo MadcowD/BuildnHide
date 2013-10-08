@@ -53,7 +53,7 @@ public class BigPlanetTemplate implements EntityTemplate {
 		
 		Transform t = new Particle(e, position, 0f);
 		e.addComponent(t);
-		e.addComponent(new Parallax(world.getCamera(), 1/128f));
+		e.addComponent(new Parallax(world.getCamera(), 1/64f));
 		
 		return e;
 		

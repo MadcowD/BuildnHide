@@ -80,7 +80,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		mountainsprite.setLayer(-100);
 		mountains.addComponent(mountainsprite);
 		
-		mountains.addComponent(new Parallax(world.getCamera(), 1/32f));
+		mountains.addComponent(new Parallax(world.getCamera(), 1/16f));
 		
 		
 		
@@ -97,7 +97,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		hillsprite.setLayer(-99);
 		hills.addComponent(hillsprite);
 		
-		hills.addComponent(new Parallax(world.getCamera(), 1/16f));
+		hills.addComponent(new Parallax(world.getCamera(), 1/8f));
 		
 		
 		

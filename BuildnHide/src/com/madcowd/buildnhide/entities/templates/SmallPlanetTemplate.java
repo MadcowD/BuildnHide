@@ -46,7 +46,7 @@ public class SmallPlanetTemplate implements EntityTemplate {
 			}
 		};
 		
-		e.addComponent(new Parallax(world.getCamera(), 1/256f));
+		e.addComponent(new Parallax(world.getCamera(), 1/128f));
 		sprite.setStateTime(type); //Stay at this frame.
 		sprite.setLayer(-220);
 		
