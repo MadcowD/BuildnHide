@@ -71,7 +71,7 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		Entity hills = new Entity();
 		hills.init("asd", "group", "type");
 		hills.addComponent(new Particle(hills, new Vector2(-15,0), 0f));
-		
+		 
 		Sprite hillsprite = new Sprite(background,new Rectangle(0, 0, 1024, 127));
 		hillsprite.setLayer(100);
 		hills.addComponent(hillsprite);
