@@ -47,12 +47,13 @@ public class BigStarTemplate implements EntityTemplate {
 		
 		Animation sprite = new Animation(sheetTexture, region, FRAMES_PER_ANIMATION, 1, frameTime);
 		sprite.setStateTime(rand.nextFloat());
+		sprite.setLayer(-225);
 		e.addComponent(sprite);
 		
 		Transform t = new Particle(e, position, 0f);
 		e.addComponent(t);
 		
-		e.addComponent(new Parallax(world.getCamera(), 1/8f));
+		e.addComponent(new Parallax(world.getCamera(), 1/20000f));
 		
 		return e;
 	}

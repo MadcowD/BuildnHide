@@ -80,7 +80,7 @@ public class BuildWorld extends EntityWorld {
 	protected void buildEntities() {
 		super.buildEntities();
 		
-		this.createEntityGroup("terrain");
+		this.createEntityGroup("terrain", 300);
 		this.createEntityGroup("StarField");
 		
 	}
