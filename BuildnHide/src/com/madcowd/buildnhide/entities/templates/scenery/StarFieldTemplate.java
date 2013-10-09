@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.punchline.javalib.entities.Entity;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.entities.templates.EntityGroupTemplate;
+import com.punchline.javalib.utils.Convert;
 
 public class StarFieldTemplate implements EntityGroupTemplate {
 
@@ -29,7 +30,7 @@ public class StarFieldTemplate implements EntityGroupTemplate {
 		
 		Array<Entity> group = new Array<Entity>();
 		
-		Rectangle bounds = world.getBounds();
+		Rectangle bounds = Convert.pixelsToMeters(new Rectangle(-1600, -240 ,3200 ,480));
 		float xRange = bounds.width / 2;
 		float yRange = bounds.height / 2;
 		

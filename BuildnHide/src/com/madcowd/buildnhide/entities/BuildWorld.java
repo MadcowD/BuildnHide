@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.madcowd.buildnhide.entities.systems.PlayerControlSystem;
 import com.madcowd.buildnhide.entities.templates.*;
 import com.madcowd.buildnhide.entities.templates.scenery.BigPlanetTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.BigStarTemplate;
@@ -15,6 +16,7 @@ import com.madcowd.buildnhide.entities.templates.scenery.SmallStarTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.StarFieldTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
+import com.punchline.javalib.entities.systems.generic.TrackingCameraSystem;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SoundManager;
 import com.punchline.javalib.utils.SpriteSheet;
@@ -22,7 +24,7 @@ import com.punchline.javalib.utils.SpriteSheet;
 public class BuildWorld extends EntityWorld {
 	
 	public BuildWorld(InputMultiplexer input, Camera camera) {
-		super(input, camera, new Vector2(0, -9.81f));
+		super(input, camera, new Vector2(0, -40.81f));
 		
 		SoundManager.playSong("shemelts", 1f, true);
 		
@@ -55,9 +57,9 @@ public class BuildWorld extends EntityWorld {
 	public Rectangle getBounds() {
 		return Convert.pixelsToMeters(
 				new Rectangle(
-					-Gdx.graphics.getWidth() * 2, 
+					-Gdx.graphics.getWidth() * 4, 
 					-Gdx.graphics.getHeight() / 2, 
-					Gdx.graphics.getWidth() * 4, 
+					Gdx.graphics.getWidth() * 8, 
 					Gdx.graphics.getHeight()));
 	}
 
@@ -67,6 +69,9 @@ public class BuildWorld extends EntityWorld {
 	@Override
 	protected void buildSystems() {		
 		super.buildSystems();
+		
+		this.systems.addSystem(new PlayerControlSystem(this.input));
+		this.systems.addSystem(new TrackingCameraSystem("Player", this.camera));
 		
 	}
 
