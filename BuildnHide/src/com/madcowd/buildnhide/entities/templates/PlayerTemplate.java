@@ -1,6 +1,7 @@
 package com.madcowd.buildnhide.entities.templates;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -46,7 +47,7 @@ public class PlayerTemplate implements EntityTemplate{
 		
 		
 		//Sprite TODO: turn to animation
-		AnimatedSprite s = new AnimatedSprite(world.getSpriteSheet(), "player", 8, 1, 1);
+		AnimatedSprite s = new AnimatedSprite(world.getSpriteSheet(), "player", 8, Animation.LOOP, 1f);
 		s.setState("Straight", true);
 		s.setScale(3.5f, 3.5f);
 		e.addComponent(s);

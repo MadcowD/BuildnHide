@@ -23,6 +23,9 @@ public class StarFieldTemplate implements EntityGroupTemplate {
 	private static final int SMALL_PLANET_WIDTH = 24, SMALL_PLANET_HEIGHT = 25;
 	private static final int BIG_STAR_WIDTH = 24, BIG_STAR_HEIGHT = 25;
 	
+	
+	private static final Rectangle REGION = new Rectangle(-1600, -240 ,3200 ,480);
+	
 	private Array<Rectangle> usedSpots = new Array<Rectangle>();
 	
 	@Override
@@ -30,7 +33,7 @@ public class StarFieldTemplate implements EntityGroupTemplate {
 		
 		Array<Entity> group = new Array<Entity>();
 		
-		Rectangle bounds = Convert.pixelsToMeters(new Rectangle(-1600, -240 ,3200 ,480));
+		Rectangle bounds = Convert.pixelsToMeters(REGION);
 		float xRange = bounds.width / 2;
 		float yRange = bounds.height / 2;
 		

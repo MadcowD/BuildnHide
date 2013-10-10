@@ -108,10 +108,8 @@ public class BuildWorld extends EntityWorld {
 		
 		//SPRITESHEET
 		this.spriteSheet.addRegion("playerStraight", 28, 1, 8, 8);
-		this.spriteSheet.addRegion("playerRight", 10, 1, 8, 8);
-		this.spriteSheet.addRegion("playerRightRun", 19, 1, 8, 8);
-		this.spriteSheet.addRegion("playerLeft", 73, 1, 8, 8);
-		this.spriteSheet.addRegion("playerLeftRun", 66, 1, 8, 8);
+		this.spriteSheet.addRegion("playerRight", 10, 1, 17, 8);
+		this.spriteSheet.addRegion("playerLeft", 66, 1, 17, 8);
 	}
 
 	

@@ -24,6 +24,13 @@ import com.punchline.javalib.utils.Convert;
  */
 public class TerrainTemplate implements EntityGroupTemplate{
 
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Creates a terrain template
 	 */
