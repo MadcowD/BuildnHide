@@ -23,45 +23,49 @@ public class BigStarTemplate implements EntityTemplate {
 	private static final int FRAMES_PER_ANIMATION = 2;
 	private static final int FRAMES_WIDTH = 96;
 	private static final int FRAMES_HEIGHT = 25;
-	
+
 	private Texture sheetTexture;
-	
+
 	public BigStarTemplate() {
-		sheetTexture = new Texture(Gdx.files.internal("data/Textures/Scenery/BigStars.png"));
+		sheetTexture = new Texture(
+				Gdx.files.internal("data/Textures/Scenery/BigStars.png"));
 	}
-	
+
 	@Override
 	public Entity buildEntity(Entity e, EntityWorld world, Object... args) {
 		e.init("", "Scenery", "BigStar");
-		
-		Vector2 position = (Vector2)args[0];
-		
+
+		Vector2 position = (Vector2) args[0];
+
 		int type = rand.nextInt(ANIMATIONS);
-		
+
 		int frameWidth = FRAMES_WIDTH / FRAMES;
 		int frameHeight = FRAMES_HEIGHT;
-		
-		TextureRegion region = new TextureRegion(sheetTexture, type * frameWidth * 2, 0, frameWidth * FRAMES_PER_ANIMATION, frameHeight);
-		
+
+		TextureRegion region = new TextureRegion(sheetTexture, type
+				* frameWidth * 2, 0, frameWidth * FRAMES_PER_ANIMATION,
+				frameHeight);
+
 		float frameTime = rand.nextFloat() / 2 + 0.7f;
-		
-		Animation sprite = new Animation(sheetTexture, region, FRAMES_PER_ANIMATION, 1, frameTime);
+
+		Animation sprite = new Animation(sheetTexture, region,
+				FRAMES_PER_ANIMATION, 1, frameTime);
 		sprite.setStateTime(rand.nextFloat());
 		sprite.setLayer(-225);
 		e.addComponent(sprite);
-		
+
 		Transform t = new Particle(e, position, 0f);
 		e.addComponent(t);
-		
-		e.addComponent(new Parallax(world.getCamera(), 1/20000f));
-		
+
+		e.addComponent(new Parallax(world.getCamera(), 1 / 20000f));
+
 		return e;
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

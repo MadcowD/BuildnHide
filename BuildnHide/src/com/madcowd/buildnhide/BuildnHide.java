@@ -8,31 +8,32 @@ import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SoundManager;
 
 public class BuildnHide extends Game {
-	
+
 	@Override
 	public void create() {
 		Convert.init(8f);
-		
+
 		title = "Build'n'Hide";
-		
+
 		landscapeMode = true;
-		
+
 		super.create();
-		
+
 		getScreenManager().addScreen(new GameplayScreen(this));
 	}
-	
+
 	@Override
-	protected void loadSounds() { 
+	protected void loadSounds() {
 		Preferences pref = Gdx.app.getPreferences("settings");
-		
+
 		float soundVol = pref.getBoolean("Sound", true) ? 1f : 0f;
 		float musicVol = pref.getBoolean("Music", true) ? 1f : 0f;
-		
+
 		SoundManager.setSoundVolume(1f);
 		SoundManager.setMusicVolume(1f);
-		
-		SoundManager.addSong("shemelts", Gdx.files.internal("data/she-melts.mp3"));
+
+		SoundManager.addSong("shemelts",
+				Gdx.files.internal("data/she-melts.mp3"));
 	}
-	
+
 }

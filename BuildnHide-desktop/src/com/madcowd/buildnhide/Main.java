@@ -9,8 +9,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.useGL20 = false;
 		cfg.resizable = false;
-		
-		LwjglApplication a = new LwjglApplication(new BuildnHide(), cfg); 
+
+		LwjglApplication a = new LwjglApplication(new BuildnHide(), cfg);
 		LogManager.init(a);
 	}
 }

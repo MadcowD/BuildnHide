@@ -6,10 +6,10 @@ import com.punchline.javalib.Game;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.states.InputScreen;
 import com.punchline.javalib.utils.Display;
-import com.punchline.javalib.utils.SoundManager;
 
 /**
  * The screen where actual gameplay takes place.
+ * 
  * @author Nathaniel
  * @created Jul 24, 2013
  */
@@ -17,19 +17,21 @@ public class GameplayScreen extends InputScreen {
 
 	private EntityWorld world;
 	private OrthographicCamera camera;
-	
+
 	/**
 	 * Constructs a GameplayScreen.
-	 * @param game The game that owns this screen.
+	 * 
+	 * @param game
+	 *            The game that owns this screen.
 	 */
 	public GameplayScreen(Game game) {
 		super(game);
-		
-		camera = new OrthographicCamera(Display.getPreferredWidth(), Display.getPreferredHeight());
-		
+
+		camera = new OrthographicCamera(Display.getPreferredWidth(),
+				Display.getPreferredHeight());
+
 		world = new BuildWorld(game.getInput(), camera);
 	}
-
 
 	@Override
 	public boolean keyDown(int keycode) {
@@ -44,10 +46,11 @@ public class GameplayScreen extends InputScreen {
 	}
 
 	@Override
-	public void resize(int width, int height) { }
+	public void resize(int width, int height) {
+	}
 
 	@Override
-	public void show() { 
+	public void show() {
 		world.resume();
 		super.show();
 	}
@@ -59,18 +62,18 @@ public class GameplayScreen extends InputScreen {
 	}
 
 	@Override
-	public void resume() { }
+	public void resume() {
+	}
 
 	@Override
 	public void dispose() {
 		world.dispose();
 	}
 
-
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
