@@ -66,9 +66,10 @@ public class TerrainTemplate implements EntityGroupTemplate{
 		for(int i = 0; i < ((Integer)args[0]).intValue(); i++){
 			
 			Sprite s = new Sprite(tiles,new Rectangle(0, 0, 128, 127));
+			s.setLayer(10);
 			s.setPosition(
 					new Vector2((i+1-((Integer)args[0]).intValue()/2f)*Convert.pixelsToMeters(128)*8f,
-							groundBody.getPosition().y+(Convert.pixelsToMeters(128)*6.125f)));
+							groundBody.getPosition().y+(Convert.pixelsToMeters(128)*6.25f)));
 			groundSprites.add(s);
 		}
 		
