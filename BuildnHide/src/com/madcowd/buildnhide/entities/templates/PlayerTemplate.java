@@ -47,9 +47,10 @@ public class PlayerTemplate implements EntityTemplate{
 		
 		
 		//Sprite TODO: turn to animation
-		AnimatedSprite s = new AnimatedSprite(world.getSpriteSheet(), "player", 8, Animation.LOOP, 1f);
+		AnimatedSprite s = new AnimatedSprite(world.getSpriteSheet(), "player", 8, Animation.LOOP, 0.1f);
 		s.setState("Straight", true);
 		s.setScale(3.5f, 3.5f);
+		s.setLayer(1);
 		e.addComponent(s);
 		
 		
