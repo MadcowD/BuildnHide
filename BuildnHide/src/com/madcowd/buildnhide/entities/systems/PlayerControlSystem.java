@@ -42,15 +42,16 @@ public class PlayerControlSystem extends InputSystem {
 		//ANimatyion
 		AnimatedSprite as = e.getComponent(AnimatedSprite.class);
 		Vector2 linv = b.getLinearVelocity();
-		if(linv.y == 0 &&  velocity.x != 0){
-			if(velocity.x > 0)
-				as.setState("Right", true);
-			else if (velocity.x < 0)
-				as.setState("Left", true);
+
+		if(velocity.x > 0)
+			as.setState("Right", true);
+		else if (velocity.x < 0)
+			as.setState("Left", true);
 			
-		}
+		if(linv.y == 0 && velocity.x != 0)
+			as.unpause();
 		else
-			as.setState("Straight", true);
+			as.pause();
 	}
 	
 	@Override
