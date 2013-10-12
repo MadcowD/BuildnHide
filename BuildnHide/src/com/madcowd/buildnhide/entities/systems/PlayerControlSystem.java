@@ -63,8 +63,13 @@ public class PlayerControlSystem extends InputSystem {
 					.getPosition().cpy().add(jayOffset));
 
 			// Update jay direction
-			((AnimatedSprite) jayEntity.getComponent(AnimatedSprite.class))
-					.setState(as.getState(), true);
+			AnimatedSprite jayAS = jayEntity.getComponent(AnimatedSprite.class);
+
+			if (!jayAS.getState().equals(as.getState())) // IF the states
+															// differ, switch
+															// without a
+															// continued time.
+				jayAS.setState(as.getState(), false);
 
 		} else if (jayEntity != null) {
 			jayEntity.delete();
@@ -97,14 +102,6 @@ public class PlayerControlSystem extends InputSystem {
 			return true;
 		}
 
-		if (keycode == Keys.J) {
-			world.setTimeCoefficient(0.5f);
-
-			// Create the jay
-			isSmoking = true;
-			return true;
-		}
-
 		return false;
 	}
 
@@ -120,10 +117,14 @@ public class PlayerControlSystem extends InputSystem {
 		}
 
 		if (keycode == Keys.J) {
-			world.setTimeCoefficient(1f);
 
-			// Jay deletion
-			isSmoking = false;
+			isSmoking = !isSmoking; // Toggle jay
+
+			if (isSmoking)
+				world.setTimeCoefficient(0.5f);
+			else
+				world.setTimeCoefficient(1f);
+
 			return true;
 		}
 
