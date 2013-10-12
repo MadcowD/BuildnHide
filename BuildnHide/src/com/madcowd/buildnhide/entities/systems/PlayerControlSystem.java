@@ -62,6 +62,10 @@ public class PlayerControlSystem extends InputSystem {
 			((Transform) jayEntity.getComponent(Transform.class)).setPosition(b
 					.getPosition().cpy().add(jayOffset));
 
+			// Update jay direction
+			((AnimatedSprite) jayEntity.getComponent(AnimatedSprite.class))
+					.setState(as.getState(), true);
+
 		} else if (jayEntity != null) {
 			jayEntity.delete();
 			jayEntity = null;
@@ -75,7 +79,7 @@ public class PlayerControlSystem extends InputSystem {
 			velocity.scl(0, 1).add(-1, 0);
 
 			// Set jayOffset
-			jayOffset = new Vector2(-3f, 1.27f);
+			jayOffset = new Vector2(-4f, 1.4f);
 			return true;
 		}
 

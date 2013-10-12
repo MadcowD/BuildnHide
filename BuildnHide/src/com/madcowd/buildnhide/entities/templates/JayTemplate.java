@@ -28,8 +28,9 @@ public class JayTemplate implements EntityTemplate {
 		// Sprite
 		int loopType = Animation.LOOP;
 
-		AnimatedSprite as = new AnimatedSprite(world.getSpriteSheet(), "Jay"
-				+ direction, 16, 1, 0, loopType, 0.1f);
+		AnimatedSprite as = new AnimatedSprite(world.getSpriteSheet(), "Jay",
+				16, 1, 0, loopType, 0.1f);
+		as.setState(direction, true);
 		as.setScale(2.5f, 2.5f);
 		as.setLayer(2);
 		e.addComponent(as);
