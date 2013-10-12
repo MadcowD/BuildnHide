@@ -29,6 +29,8 @@ public class PlayerControlSystem extends InputSystem {
 
 	@Override
 	public void process(Entity e) {
+
+		// MOVEMENT
 		Body b = e.getComponent(Body.class);
 		b.setPosition(b.getPosition().cpy()
 				.add(velocity.cpy().scl(this.deltaSeconds() * 12)));
@@ -52,6 +54,7 @@ public class PlayerControlSystem extends InputSystem {
 		else
 			as.pause();
 
+		// SMOKING CODE
 		if (isSmoking) {
 			if (jayEntity == null) {
 				jayEntity = world.createEntity("Jay", b.getPosition().cpy()

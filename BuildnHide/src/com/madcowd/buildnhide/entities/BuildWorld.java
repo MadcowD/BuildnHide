@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.madcowd.buildnhide.entities.systems.PlayerControlSystem;
+import com.madcowd.buildnhide.entities.processes.cutscene.ActivateGameProcess;
 import com.madcowd.buildnhide.entities.templates.JayTemplate;
 import com.madcowd.buildnhide.entities.templates.PlayerTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.BigPlanetTemplate;
@@ -18,7 +18,6 @@ import com.madcowd.buildnhide.entities.templates.scenery.SmallStarTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.StarFieldTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
-import com.punchline.javalib.entities.systems.generic.TrackingCameraSystem;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SpriteSheet;
 
@@ -68,9 +67,6 @@ public class BuildWorld extends EntityWorld {
 	protected void buildSystems() {
 		super.buildSystems();
 
-		this.systems.addSystem(new PlayerControlSystem(this.input));
-		this.systems.addSystem(new TrackingCameraSystem("Player", this.camera));
-
 	}
 
 	@Override
@@ -101,6 +97,9 @@ public class BuildWorld extends EntityWorld {
 		this.createEntityGroup("StarField");
 		this.createEntity("player");
 
+		// TEST OF CONCEPT.
+		this.processes.attach(new ActivateGameProcess());
+
 	}
 
 	@Override
@@ -109,7 +108,6 @@ public class BuildWorld extends EntityWorld {
 				Gdx.files.internal("data/Textures/SPRITESHEET.PNG")));
 
 		// SPRITESHEET
-		this.spriteSheet.addRegion("playerStraight", 28, 1, 8, 8);
 		this.spriteSheet.addRegion("playerRight", 10, 1, 17, 8);
 		this.spriteSheet.addRegion("playerLeft", 66, 1, 17, 8);
 		this.spriteSheet.addRegion("JayRight", 0, 38, 126, 10);
