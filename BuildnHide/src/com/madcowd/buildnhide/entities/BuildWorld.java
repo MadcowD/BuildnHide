@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.madcowd.buildnhide.entities.systems.PlayerControlSystem;
+import com.madcowd.buildnhide.entities.templates.JayTemplate;
 import com.madcowd.buildnhide.entities.templates.PlayerTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.BigPlanetTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.BigStarTemplate;
@@ -19,7 +20,6 @@ import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.entities.systems.generic.TrackingCameraSystem;
 import com.punchline.javalib.utils.Convert;
-import com.punchline.javalib.utils.SoundManager;
 import com.punchline.javalib.utils.SpriteSheet;
 
 public class BuildWorld extends EntityWorld {
@@ -27,7 +27,7 @@ public class BuildWorld extends EntityWorld {
 	public BuildWorld(InputMultiplexer input, Camera camera) {
 		super(input, camera, new Vector2(0, -40.81f));
 
-		SoundManager.playSong("shemelts", 1f, true);
+		// SoundManager.playSong("shemelts", 1f, true);
 
 		debugView.enabled = true;
 		debugView.visible = true; // TODO: Remember to disable this...
@@ -85,6 +85,9 @@ public class BuildWorld extends EntityWorld {
 		addTemplate("SmallStar", new SmallStarTemplate());
 		addGroupTemplate("StarField", new StarFieldTemplate());
 
+		// Misc-Props
+		addTemplate("Jay", new JayTemplate());
+
 		// Entitites
 		addTemplate("player", new PlayerTemplate());
 
@@ -109,6 +112,8 @@ public class BuildWorld extends EntityWorld {
 		this.spriteSheet.addRegion("playerStraight", 28, 1, 8, 8);
 		this.spriteSheet.addRegion("playerRight", 10, 1, 17, 8);
 		this.spriteSheet.addRegion("playerLeft", 66, 1, 17, 8);
+		this.spriteSheet.addRegion("JayRight", 0, 38, 126, 10);
+		this.spriteSheet.addRegion("JayLeft", 0, 48, 126, 10);
 	}
 
 }

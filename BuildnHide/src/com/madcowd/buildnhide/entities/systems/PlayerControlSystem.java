@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Vector2;
 import com.punchline.javalib.entities.Entity;
 import com.punchline.javalib.entities.components.physical.Body;
+import com.punchline.javalib.entities.components.physical.Transform;
 import com.punchline.javalib.entities.components.render.AnimatedSprite;
 import com.punchline.javalib.entities.systems.InputSystem;
 
@@ -20,6 +21,10 @@ public class PlayerControlSystem extends InputSystem {
 	}
 
 	Vector2 velocity = new Vector2(0, 0);
+
+	Entity jayEntity;
+	Vector2 jayOffset = new Vector2(0, 0);
+	boolean isSmoking = false;
 	boolean jump = false;
 
 	@Override
@@ -46,17 +51,40 @@ public class PlayerControlSystem extends InputSystem {
 			as.unpause();
 		else
 			as.pause();
+
+		if (isSmoking) {
+			if (jayEntity == null) {
+				jayEntity = world.createEntity("Jay", b.getPosition().cpy()
+						.add(jayOffset), as.getState());
+			}
+
+			// Update jay position
+			((Transform) jayEntity.getComponent(Transform.class)).setPosition(b
+					.getPosition().cpy().add(jayOffset));
+
+		} else if (jayEntity != null) {
+			jayEntity.delete();
+			jayEntity = null;
+		}
+
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.A) {
 			velocity.scl(0, 1).add(-1, 0);
+
+			// Set jayOffset
+			jayOffset = new Vector2(-3f, 1.27f);
 			return true;
 		}
 
 		if (keycode == Keys.D) {
 			velocity.scl(0, 1).add(1, 0);
+
+			// Set jayOffset
+			jayOffset = new Vector2(2.5f, 1.125f);
+
 			return true;
 		}
 
@@ -67,6 +95,9 @@ public class PlayerControlSystem extends InputSystem {
 
 		if (keycode == Keys.J) {
 			world.setTimeCoefficient(0.5f);
+
+			// Create the jay
+			isSmoking = true;
 			return true;
 		}
 
@@ -86,6 +117,9 @@ public class PlayerControlSystem extends InputSystem {
 
 		if (keycode == Keys.J) {
 			world.setTimeCoefficient(1f);
+
+			// Jay deletion
+			isSmoking = false;
 			return true;
 		}
 
