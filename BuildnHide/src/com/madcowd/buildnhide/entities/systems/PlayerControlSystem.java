@@ -11,6 +11,8 @@ import com.punchline.javalib.entities.systems.InputSystem;
 
 public class PlayerControlSystem extends InputSystem {
 
+	private static final Vector2 PLAYER_VELOCITY = new Vector2(1, 0);
+
 	public PlayerControlSystem(InputMultiplexer input) {
 		super(input);
 	}
@@ -26,14 +28,27 @@ public class PlayerControlSystem extends InputSystem {
 	Vector2 jayOffset = new Vector2(0, 0);
 	boolean isSmoking = false;
 	boolean jump = false;
+	Vector2 autoMovement = new Vector2(0, 0);
 
 	@Override
 	public void process(Entity e) {
 
+		// CAMERA
+
 		// MOVEMENT
 		Body b = e.getComponent(Body.class);
-		b.setPosition(b.getPosition().cpy()
-				.add(velocity.cpy().scl(this.deltaSeconds() * 12)));
+
+		// BEGIN AUTOSCROLLING
+		if (autoMovement != PLAYER_VELOCITY
+				&& b.getPosition().x > world.getBounds().x + 20
+				&& b.getLinearVelocity().y == 0)
+			autoMovement = PLAYER_VELOCITY;
+
+		b.setPosition(b
+				.getPosition()
+				.cpy()
+				.add(velocity.cpy().add(autoMovement)
+						.scl(this.deltaSeconds() * 12)));
 
 		// Jumping
 		if (jump && b.getLinearVelocity().y == 0) {
@@ -44,12 +59,18 @@ public class PlayerControlSystem extends InputSystem {
 		AnimatedSprite as = e.getComponent(AnimatedSprite.class);
 		Vector2 linv = b.getLinearVelocity();
 
-		if (velocity.x > 0)
+		if (velocity.x + autoMovement.x > 0) {
 			as.setState("Right", true);
-		else if (velocity.x < 0)
-			as.setState("Left", true);
+			// Set jayOffset
+			jayOffset = new Vector2(2.5f, 1.125f);
 
-		if (linv.y == 0 && velocity.x != 0)
+		} else if (velocity.x + autoMovement.x < 0) {
+			as.setState("Left", true);
+			// Set jayOffset
+			jayOffset = new Vector2(-4f, 1.4f);
+		}
+
+		if (linv.y == 0 && velocity.x + autoMovement.x != 0)
 			as.unpause();
 		else
 			as.pause();
@@ -84,24 +105,28 @@ public class PlayerControlSystem extends InputSystem {
 	@Override
 	public boolean keyDown(int keycode) {
 		if (keycode == Keys.A) {
-			velocity.scl(0, 1).add(-1, 0);
+			velocity.scl(0, 1).add(-0.5f, 0);
 
-			// Set jayOffset
-			jayOffset = new Vector2(-4f, 1.4f);
 			return true;
 		}
 
 		if (keycode == Keys.D) {
-			velocity.scl(0, 1).add(1, 0);
-
-			// Set jayOffset
-			jayOffset = new Vector2(2.5f, 1.125f);
-
+			velocity.scl(0, 1).add(0.5f, 0);
 			return true;
 		}
 
 		if (keycode == Keys.SPACE) {
 			jump = true;
+			return true;
+		}
+
+		if (keycode == Keys.J) {
+
+			if (!isSmoking) {
+				world.setTimeCoefficient(0.5f);
+				isSmoking = true;
+			}
+
 			return true;
 		}
 
@@ -121,17 +146,14 @@ public class PlayerControlSystem extends InputSystem {
 
 		if (keycode == Keys.J) {
 
-			isSmoking = !isSmoking; // Toggle jay
-
-			if (isSmoking)
-				world.setTimeCoefficient(0.5f);
-			else
-				world.setTimeCoefficient(1f);
+			if (isSmoking) {
+				world.setTimeCoefficient(1);
+				isSmoking = false;
+			}
 
 			return true;
 		}
 
 		return false;
 	}
-
 }

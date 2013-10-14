@@ -31,8 +31,8 @@ public class PlayerTemplate implements EntityTemplate {
 		// Body
 		CircleShape ps = new CircleShape();
 		ps.setRadius(Convert.pixelsToMeters(14));
-		Body b = new Body(world, e, BodyType.DynamicBody, ps,
-				new Vector2(0, 20));
+		Body b = new Body(world, e, BodyType.DynamicBody, ps, new Vector2(
+				world.getBounds().x + 4, 5));
 		b.getBody().setFixedRotation(true);
 		b.getBody().setSleepingAllowed(false);
 		e.addComponent(b);

@@ -10,9 +10,7 @@ import com.punchline.javalib.entities.Entity;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.entities.components.physical.Body;
 import com.punchline.javalib.entities.components.physical.Particle;
-import com.punchline.javalib.entities.components.render.MultiRenderable;
 import com.punchline.javalib.entities.components.render.Parallax;
-import com.punchline.javalib.entities.components.render.Renderable;
 import com.punchline.javalib.entities.components.render.Sprite;
 import com.punchline.javalib.entities.templates.EntityGroupTemplate;
 import com.punchline.javalib.utils.Convert;
@@ -47,29 +45,17 @@ public class TerrainTemplate implements EntityGroupTemplate {
 		Entity ground = new Entity();
 		ground.init("G", "asdasd", "asd");
 		PolygonShape ps = new PolygonShape();
-		ps.setAsBox(
-				((Integer) args[0]).intValue() / 2
-						* Convert.pixelsToMeters(128),
-				Convert.pixelsToMeters(128) / 2f);
+		ps.setAsBox(Convert.pixelsToMeters(123 / 2),
+				Convert.pixelsToMeters(64 / 2));
 		Body groundBody = (Body) ground.addComponent(new Body(world, ground,
-				BodyType.StaticBody, ps, new Vector2(0, -35)));
+				BodyType.StaticBody, ps, new Vector2(world.getBounds().x + 6,
+						-28)));
 
-		Array<Renderable> groundSprites = new Array<Renderable>();
-		// create all the ground tiles with offset T:3
-		for (int i = 0; i < ((Integer) args[0]).intValue(); i++) {
+		ground.addComponent(groundBody);
+		Sprite s = new Sprite(tiles, new Rectangle(0, 0, 128, 127),
+				new Vector2(128 / 2f + -6, 32f));
 
-			Sprite s = new Sprite(tiles, new Rectangle(0, 0, 128, 127));
-			s.setLayer(10);
-			s.setPosition(new Vector2(
-					(i + 1 - ((Integer) args[0]).intValue() / 2f)
-							* Convert.pixelsToMeters(128) * 8f, groundBody
-							.getPosition().y
-							+ (Convert.pixelsToMeters(128) * 6.25f)));
-			groundSprites.add(s);
-		}
-
-		ground.addComponent(new MultiRenderable(new Sprite(tiles,
-				new Rectangle(0, 0, 128, 127)), groundSprites));
+		ground.addComponent(s);
 		ents.add(ground);
 
 		// endregion
