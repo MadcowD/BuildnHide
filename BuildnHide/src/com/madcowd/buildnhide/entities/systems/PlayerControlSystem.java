@@ -71,7 +71,7 @@ public class PlayerControlSystem extends InputSystem {
 		}
 
 		if (linv.y == 0 && velocity.x + autoMovement.x != 0)
-			as.unpause();
+			as.resume();
 		else
 			as.pause();
 
