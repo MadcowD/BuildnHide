@@ -28,6 +28,7 @@ public class PlayerControlSystem extends InputSystem {
 	Vector2 jayOffset = new Vector2(0, 0);
 	boolean isSmoking = false;
 	boolean jump = false;
+	boolean airborn = false;
 	Vector2 autoMovement = new Vector2(0, 0);
 
 	@Override
@@ -37,10 +38,15 @@ public class PlayerControlSystem extends InputSystem {
 
 		// MOVEMENT
 		Body b = e.getComponent(Body.class);
+		Vector2 linv = b.getLinearVelocity();
+		if (linv.y != 0)
+			airborn = true;
+		else
+			airborn = false;
 
 		// BEGIN AUTOSCROLLING
 		if (autoMovement != PLAYER_VELOCITY
-				&& b.getPosition().x > world.getBounds().x + 20
+				&& b.getPosition().x > world.getBounds().x + 15
 				&& b.getLinearVelocity().y == 0)
 			autoMovement = PLAYER_VELOCITY;
 
@@ -51,13 +57,12 @@ public class PlayerControlSystem extends InputSystem {
 						.scl(this.deltaSeconds() * 12)));
 
 		// Jumping
-		if (jump && b.getLinearVelocity().y == 0) {
+		if (jump && !airborn) {
 			b.getBody().applyLinearImpulse(0, 30, 0, 0, true);
 		}
 
 		// ANimatyion
 		AnimatedSprite as = e.getComponent(AnimatedSprite.class);
-		Vector2 linv = b.getLinearVelocity();
 
 		if (velocity.x + autoMovement.x > 0) {
 			as.setState("Right", true);
@@ -70,7 +75,7 @@ public class PlayerControlSystem extends InputSystem {
 			jayOffset = new Vector2(-4f, 1.4f);
 		}
 
-		if (linv.y == 0 && velocity.x + autoMovement.x != 0)
+		if (!airborn && velocity.x + autoMovement.x != 0)
 			as.resume();
 		else
 			as.pause();
@@ -104,13 +109,13 @@ public class PlayerControlSystem extends InputSystem {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Keys.A) {
+		if (keycode == Keys.A && (!airborn || autoMovement.x == 0 || isSmoking)) {
 			velocity.scl(0, 1).add(-0.5f, 0);
 
 			return true;
 		}
 
-		if (keycode == Keys.D) {
+		if (keycode == Keys.D && (!airborn || autoMovement.x == 0 || isSmoking)) {
 			velocity.scl(0, 1).add(0.5f, 0);
 			return true;
 		}

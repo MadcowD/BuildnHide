@@ -15,6 +15,7 @@ import com.madcowd.buildnhide.entities.templates.scenery.SmallPlanetTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.SmallStarTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.StarFieldTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
+import com.madcowd.buildnhide.entities.templates.world.WorldTemplate;
 import com.punchline.javalib.entities.EntityWorld;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SpriteSheet;
@@ -39,7 +40,7 @@ public class BuildWorld extends EntityWorld {
 	public Rectangle getBounds() {
 		return Convert.pixelsToMeters(new Rectangle(
 				-Gdx.graphics.getWidth() * 5, -Gdx.graphics.getHeight() / 2,
-				Gdx.graphics.getWidth() * 10, Gdx.graphics.getHeight()));
+				Gdx.graphics.getWidth() * 12, Gdx.graphics.getHeight()));
 	}
 
 	@Override
@@ -65,6 +66,9 @@ public class BuildWorld extends EntityWorld {
 		addTemplate("SmallStar", new SmallStarTemplate());
 		addGroupTemplate("StarField", new StarFieldTemplate());
 
+		// WORLD
+		addGroupTemplate("World", new WorldTemplate());
+
 		// Important-Props
 		addTemplate("Jay", new JayTemplate());
 
@@ -79,6 +83,8 @@ public class BuildWorld extends EntityWorld {
 
 		this.createEntityGroup("terrain", 256);
 		this.createEntityGroup("StarField");
+		this.createEntityGroup("World", getBounds().x + 20, getBounds().x
+				+ getBounds().width);
 		this.createEntity("player");
 
 		// TEST OF CONCEPT.
