@@ -16,7 +16,6 @@ import com.madcowd.buildnhide.entities.templates.scenery.SmallStarTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.StarFieldTemplate;
 import com.madcowd.buildnhide.entities.templates.scenery.TerrainTemplate;
 import com.punchline.javalib.entities.EntityWorld;
-import com.punchline.javalib.entities.tiles.TileMapTemplate;
 import com.punchline.javalib.utils.Convert;
 import com.punchline.javalib.utils.SpriteSheet;
 
@@ -66,13 +65,11 @@ public class BuildWorld extends EntityWorld {
 		addTemplate("SmallStar", new SmallStarTemplate());
 		addGroupTemplate("StarField", new StarFieldTemplate());
 
-		// Misc-Props
+		// Important-Props
 		addTemplate("Jay", new JayTemplate());
 
 		// Entitites
 		addTemplate("player", new PlayerTemplate());
-
-		addTemplate("TileMap", new TileMapTemplate());
 
 	}
 
