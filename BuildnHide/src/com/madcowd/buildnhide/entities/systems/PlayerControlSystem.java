@@ -22,6 +22,10 @@ public class PlayerControlSystem extends InputSystem {
 		return e.getTag().equals("Player");
 	}
 
+	@Override
+	public void onAdded(Entity e) {
+	}
+
 	Vector2 velocity = new Vector2(0, 0);
 
 	Entity jayEntity;
@@ -39,10 +43,8 @@ public class PlayerControlSystem extends InputSystem {
 		// MOVEMENT
 		Body b = e.getComponent(Body.class);
 		Vector2 linv = b.getLinearVelocity();
-		if (linv.y != 0)
-			airborn = true;
-		else
-			airborn = false;
+
+		airborn = Math.abs(linv.y) == 0 ? false : true;
 
 		// BEGIN AUTOSCROLLING
 		if (autoMovement != PLAYER_VELOCITY

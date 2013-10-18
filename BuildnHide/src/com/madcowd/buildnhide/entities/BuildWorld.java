@@ -25,7 +25,7 @@ public class BuildWorld extends EntityWorld {
 	public BuildWorld(InputMultiplexer input, Camera camera) {
 		super(input, camera, new Vector2(0, -40.81f));
 
-		// SoundManager.playSong("shemelts", 1f, true);
+		com.punchline.javalib.utils.SoundManager.playSong("shemelts", 1f, true);
 
 		debugView.enabled = true;
 		debugView.visible = true; // TODO: Remember to disable this...
@@ -104,6 +104,7 @@ public class BuildWorld extends EntityWorld {
 		this.spriteSheet.addRegion("playerLeft", 66, 1, 17, 8);
 		this.spriteSheet.addRegion("JayRight", 0, 38, 126, 10);
 		this.spriteSheet.addRegion("JayLeft", 0, 48, 126, 10);
+		this.spriteSheet.addRegion("BlockStandard", 0, 28, 9, 8);
 	}
 
 }

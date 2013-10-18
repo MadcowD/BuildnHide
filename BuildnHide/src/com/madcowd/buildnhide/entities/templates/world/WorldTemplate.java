@@ -30,21 +30,23 @@ public class WorldTemplate implements EntityGroupTemplate {
 		// CONDITIONALS FOR RANDOM WORLD BUILDING
 		Random r = new Random();
 		Vector2 lastPosition = new Vector2(start, -26);
+		float frequency = 0;
 		boolean hole = false;
 
 		for (float i = 0f; i < end - start; i += TILEWIDTH_M) {
-
+			frequency = i / TILEWIDTH_M;
 			// set up random conditionals
 			float randomValue = r.nextFloat(1000);
 			Vector2 newPosition;
 
-			if (r.nextFloat(1000) < 50) {
+			if (r.nextFloat(1000) < 0 + frequency / 3f) {
 				hole = true;
 				continue;
 			}
 
 			if (hole) {
-				if (r.nextFloat(1000) > 800)
+				if (r.nextFloat(1000) < 350 - frequency / 2f
+						|| i + start - lastPosition.x > TILEWIDTH_M * 15)
 					hole = false;
 				continue;
 
@@ -67,7 +69,11 @@ public class WorldTemplate implements EntityGroupTemplate {
 			p.setAsBox(TILEWIDTH_M / 2f, TILEWIDTH_M / 2f);
 			e.addComponent(new Body(world, e, BodyType.StaticBody, p,
 					newPosition));
+			e.addComponent(com.punchline.javalib.entities.GenericCollisionEvents
+					.empty());
 
+			e.addComponent(new com.punchline.javalib.entities.components.render.Sprite(
+					world.getSpriteSheet(), "BlockStandard"));
 			worldEntitiesArray.add(e);
 
 		}

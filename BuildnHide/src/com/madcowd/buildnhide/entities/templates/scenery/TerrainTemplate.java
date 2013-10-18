@@ -56,6 +56,8 @@ public class TerrainTemplate implements EntityGroupTemplate {
 				new Vector2(128 / 2f + -6, 32f));
 
 		ground.addComponent(s);
+		ground.addComponent(com.punchline.javalib.entities.GenericCollisionEvents
+				.empty());
 		ents.add(ground);
 
 		// endregion
@@ -93,5 +95,4 @@ public class TerrainTemplate implements EntityGroupTemplate {
 
 		return ents;
 	}
-
 }
